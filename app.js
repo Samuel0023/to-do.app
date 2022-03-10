@@ -10,7 +10,6 @@ let actions = async(opt) => {
         case '1':
             let desc = await readInput('Description: ');
             gestor.add_task(new Task(desc));
-
             //gestor.to_do_list();
             break;
         case '2':

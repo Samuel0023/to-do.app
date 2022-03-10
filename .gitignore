@@ -1,2 +1,4 @@
-./node_modules/
-./helpers/messages-old.js
+
+node_modules/
+helpers/messages-old.js
+db/

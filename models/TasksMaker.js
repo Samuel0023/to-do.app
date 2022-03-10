@@ -1,3 +1,4 @@
+const { saveDB } = require('../helpers/save_file');
 const Task = require('./task');
 require('colors');
 class TaskMaker {
@@ -16,13 +17,14 @@ class TaskMaker {
 
     add_task(task) {
         this._listado[task.id] = task;
+        //saveDB(JSON.stringify(this.listadoArr));
     }
 
     to_do_list() {
         console.log('Task To DO'.gray);
 
         this.listadoArr.forEach(task => {
-            console.log(`${task.desc}`.blue);
+            console.log(`${task.desc}`.brightBlue);
         })
     }
     tasks_complete() {
@@ -39,7 +41,7 @@ class TaskMaker {
         }
     }
     complete_task(task) {
-        
+
     }
 }
 
