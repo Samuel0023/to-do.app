@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const Task = require('../models/task');
 require('colors');
 
 const menuOpt = [{
@@ -40,6 +41,25 @@ const menuOpt = [{
 
     ]
 }]
+const taskToDelete = async(tasks = []) => {
+    var idx = '';
+    const choices = tasks.map((task, indice) => {
+        idx = `${indice+1}.`.green
+        return {
+            value: task.id,
+            name: `${idx} ${task.desc}`
+        }
+    });
+
+    const questions = [{
+        type: 'list',
+        name: 'option',
+        message: 'Borrar',
+        choices
+    }]
+    const { option } = await inquirer.prompt(questions);
+    return option;
+}
 const inquirerMenu = async() => {
     console.clear();
     console.log(' ============================ '.green);
@@ -79,8 +99,20 @@ const readInput = async(message) => {
     const { desc } = await inquirer.prompt(question);
     return desc;
 }
+
+const confirm = async(message) => {
+    const question = [{
+        type: 'confirm',
+        name: 'ok',
+        message
+    }]
+    const { ok } = await inquirer.prompt(question);
+    return ok
+}
 module.exports = {
     inquirerMenu,
     pause,
+    taskToDelete,
+    confirm,
     readInput
 }
