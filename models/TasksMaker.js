@@ -14,9 +14,10 @@ class TaskMaker {
         return listado;
     }
     update() {
-        this._listado = readDB();
+        if (readDB()) {
+            this._listado = readDB();
+        }
     }
-
     add_task(task) {
         this._listado[task.id] = task;
 
