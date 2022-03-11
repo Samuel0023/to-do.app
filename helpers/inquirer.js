@@ -60,6 +60,26 @@ const taskToDelete = async(tasks = []) => {
     const { option } = await inquirer.prompt(questions);
     return option;
 }
+const taskCheckList = async(tasks = []) => {
+    var idx = '';
+    const choices = tasks.map((task, indice) => {
+        idx = `${indice+1}.`.green
+        return {
+            value: task.id,
+            name: `${idx} ${task.desc}`
+        }
+    });
+
+    const questions = [{
+        type: 'checkbox',
+        name: 'ids',
+        message: 'to Select',
+        choices
+    }]
+    const { ids } = await inquirer.prompt(questions);
+    return ids;
+}
+
 const inquirerMenu = async() => {
     console.clear();
     console.log(' ============================ '.green);
@@ -113,6 +133,7 @@ module.exports = {
     inquirerMenu,
     pause,
     taskToDelete,
+    taskCheckList,
     confirm,
     readInput
 }

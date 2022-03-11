@@ -72,6 +72,22 @@ class TaskMaker {
 
         saveDB(JSON.stringify(data));
     }
+    complete_task(_id) {
+        const data = this.listadoArr;
+        data.forEach(task => {
+            if (task.id == _id) {
+
+                task.completadoEn = new Date().toISOString();
+                console.log(task);
+            }
+        })
+        console.log(data);
+        saveDB(JSON.stringify(data));
+    }
+    complete_tasks(ids) {
+
+        ids.forEach(id => this.complete_task(id));
+    }
 }
 
 module.exports = TaskMaker;

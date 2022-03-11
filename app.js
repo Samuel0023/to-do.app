@@ -1,4 +1,4 @@
-const { inquirerMenu, pause, readInput, taskToDelete, confirm } = require('./helpers/inquirer');
+const { inquirerMenu, pause, readInput, taskToDelete, confirm, taskCheckList } = require('./helpers/inquirer');
 const Task = require('./models/task');
 const TaskMaker = require('./models/TasksMaker');
 require('colors');
@@ -20,6 +20,10 @@ let actions = async(opt) => {
             break;
         case '4':
             gestor.to_do_list();
+            break;
+        case '5':
+            const ids = await taskCheckList(gestor.listadoArr);
+            gestor.complete_tasks(ids);
             break;
         case '6':
             let id = await taskToDelete(gestor.listadoArr);
