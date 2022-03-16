@@ -1,4 +1,4 @@
-const { saveDB, readDB } = require('../helpers/save_file');
+const { saveDB, readDB, exist_db } = require('../helpers/save_file');
 const Task = require('./task');
 require('colors');
 class TaskMaker {
@@ -14,7 +14,7 @@ class TaskMaker {
         return listado;
     }
     update() {
-        if (readDB()) {
+        if (exist_db()) {
             this._listado = readDB();
         }
     }

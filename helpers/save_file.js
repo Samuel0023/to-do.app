@@ -8,11 +8,11 @@ const saveDB = (data) => {
 
 }
 const readDB = () => {
-    if (fs.existsSync(archivo)) {
-        const info = fs.readFileSync(archivo, { encoding: 'utf-8' });
-        return JSON.parse(info);
-    } else {
-        return false;
-    }
+    const info = fs.readFileSync(archivo, { encoding: 'utf-8' });
+    return JSON.parse(info);
+
 }
-module.exports = { saveDB, readDB };
+const exist_db = () => {
+    return fs.existsSync(archivo);
+}
+module.exports = { saveDB, readDB, exist_db };
